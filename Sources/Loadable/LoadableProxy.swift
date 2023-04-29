@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 public class LoadableProxy: LoadableProxyProtocol, ObservableObject {
+
     public var className: String { "\(type(of: self))" }
 
     public var needsSync: Bool { loadable.needsSync }
