@@ -60,10 +60,11 @@ public final class DefaultAutoSyncer: AutoSyncer {
         NSLog("%@: startingAutoSyncingTimer in: %d seconds", className, startDelay)
 
         DispatchQueue.main.async { [weak self] in
-            self?.startAutoSyncingTimer = Timer.scheduledTimer(
+            guard let self = self else { return }
+            self.startAutoSyncingTimer = Timer.scheduledTimer(
                 timeInterval: TimeInterval(delay),
                 target: self,
-                selector: #selector(self?.startSyncing),
+                selector: #selector(self.startSyncing),
                 userInfo: nil, repeats: false
             )
         }
