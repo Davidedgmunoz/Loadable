@@ -1,6 +1,5 @@
 //
 //  Loadable.swift
-//  cvmedia
 //
 //  Created by David Muñoz on 29/01/2022.
 //

@@ -1,6 +1,5 @@
 //
 //  Loadable.swift
-//  cvmedia
 //
 //  Created by David Muñoz on 29/01/2022.
 //
@@ -8,7 +7,7 @@
 import Foundation
 import Combine
 
-public class Loadable: LoadableProtocol, ObservableObject {
+open class Loadable: LoadableProtocol, ObservableObject {
 
     public var state: LoadableState = .idle {
         didSet {

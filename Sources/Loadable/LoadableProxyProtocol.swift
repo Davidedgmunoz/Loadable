@@ -1,6 +1,5 @@
 //
 //  LoadableProxyProtocol.swift
-//  cvmedia
 //
 //  Created by David Muñoz on 28/04/2022.
 //

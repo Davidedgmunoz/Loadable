@@ -1,6 +1,5 @@
 //
 //  LoadableGroupProtocol.swift
-//  cvmedia
 //
 //  Created by David Muñoz on 14/06/2022.
 //
