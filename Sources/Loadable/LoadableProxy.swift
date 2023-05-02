@@ -1,6 +1,5 @@
 //
 //  LoadableProxy.swift
-//  cvmedia
 //
 //  Created by David Muñoz on 28/04/2022.
 //
@@ -8,7 +7,10 @@
 import Foundation
 import Combine
 
-public class LoadableProxy: LoadableProxyProtocol, ObservableObject {
+open class LoadableProxy: LoadableProxyProtocol, ObservableObject {
+
+    public init() {}
+
     public var className: String { "\(type(of: self))" }
 
     public var needsSync: Bool { loadable.needsSync }
