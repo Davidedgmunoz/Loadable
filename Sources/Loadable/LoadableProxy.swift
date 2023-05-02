@@ -13,7 +13,7 @@ open class LoadableProxy: LoadableProxyProtocol, ObservableObject {
 
     public var className: String { "\(type(of: self))" }
 
-    public var needsSync: Bool { loadable.needsSync }
+    open var needsSync: Bool { loadable.needsSync }
 
     private var cancellable: AnyCancellable?
     public weak var loadable: LoadableProtocol! {
@@ -24,14 +24,14 @@ open class LoadableProxy: LoadableProxyProtocol, ObservableObject {
         }
     }
 
-    public var state: LoadableState { loadable.state }
+    open var state: LoadableState { loadable.state }
 
-    public func syncIfNeeded() {
+    open func syncIfNeeded() {
         guard needsSync else { return }
         doSync()
     }
 
-    public func doSync() {
+    open func doSync() {
         loadable.doSync()
     }
 

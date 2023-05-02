@@ -10,7 +10,7 @@ import Combine
 open class Loadable: LoadableProtocol, ObservableObject {
 
     public init() {}
-    
+
     public var state: LoadableState = .idle {
         didSet {
             DispatchQueue.global().asyncAfter(deadline: .now()+0.2) {
@@ -21,9 +21,9 @@ open class Loadable: LoadableProtocol, ObservableObject {
 
     public var className: String { "\(type(of: self))" }
 
-    public var needsSync: Bool { state != .didSuccess }
+    open var needsSync: Bool { state != .didSuccess }
 
-    public func doSync() { fatalError("Must be overriden") }
+    open func doSync() { fatalError("Must be overriden") }
 
     public func notifyDataDidChanged(if shouldNotify: Bool = true) {
         guard shouldNotify else { return }
