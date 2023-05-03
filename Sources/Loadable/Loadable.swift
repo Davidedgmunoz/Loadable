@@ -13,9 +13,9 @@ open class Loadable: LoadableProtocol, ObservableObject {
 
     public var state: LoadableState = .idle {
         didSet {
-            DispatchQueue.global().asyncAfter(deadline: .now()+0.2) {
+//            DispatchQueue.global().asyncAfter(deadline: .now()+0.2) {
                 self.objectWillChange.send()
-            }
+//            }
         }
     }
 
