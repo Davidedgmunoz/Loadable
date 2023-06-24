@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-public class TestLoadable: LoadableProtocol, ObservableObject {
+open class TestLoadable: LoadableProtocol, ObservableObject {
 
     var syncIfNeededCounter: Int = 0
     var syncCounter: Int = 0
