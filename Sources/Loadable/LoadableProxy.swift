@@ -45,7 +45,7 @@ open class LoadableProxy: LoadableProxyProtocol, ObservableObject {
         notifyDataDidChanged()
     }
 
-    func proxyDidChange() {}
+    open func proxyDidChange() {}
 
     // It depends on their model, its not really a loadable.
     public func startSyncing() {
