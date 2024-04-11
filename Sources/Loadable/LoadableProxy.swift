@@ -23,7 +23,8 @@ open class LoadableProxy: LoadableProxyProtocol, ObservableObject {
 
     public init(loadable: LoadableProtocol) {
         self.loadable = loadable
-        
+        cancellable = loadable.objectWillChange.receive(on: DispatchQueue.main)
+            .sink { [weak self] in  self?.notifyDataDidChanged() }
     }
 
     public var className: String { "\(type(of: self))" }
@@ -34,7 +35,7 @@ open class LoadableProxy: LoadableProxyProtocol, ObservableObject {
     public var loadable: LoadableProtocol {
         didSet {
             cancellable?.cancel()
-             cancellable = loadable.objectWillChange
+            cancellable = loadable.objectWillChange.receive(on: DispatchQueue.main)
                 .sink { [weak self] in  self?.notifyDataDidChanged() }
             proxyDidChange()
         }
