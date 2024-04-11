@@ -25,6 +25,13 @@ public protocol LoadableGroupProtocol: LoadableProtocol {
 // MARK: - Default
 
 public final class LoadableGroup: LoadableGroupProtocol, ObservableObject {
+    public var shouldShowError: Bool { 
+        get { loadables.contains { $0.shouldShowError } }
+        set { print("not fail") }
+    }
+    
+    public var error: Error? { loadables.first(where: { $0.error != nil })?.error }
+    
     public var loadables: [LoadableProtocol] = []
     public var failurePolicy: LoadableGroupFailurePolicy
     internal init(

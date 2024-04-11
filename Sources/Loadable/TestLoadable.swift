@@ -9,7 +9,9 @@ import Foundation
 import Combine
 
 open class TestLoadable: LoadableProtocol, ObservableObject {
-
+    public var shouldShowError: Bool = false
+    public var error: Error? = nil
+    
     public init() {}
 
     var syncIfNeededCounter: Int = 0
@@ -22,6 +24,10 @@ open class TestLoadable: LoadableProtocol, ObservableObject {
     public func syncIfNeeded() {
         syncIfNeededCounter += 1
         doSync()
+    }
+    
+    public func update(state: LoadableState) {
+        self.state = state
     }
 
     public func doSync() {

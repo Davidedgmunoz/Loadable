@@ -8,19 +8,35 @@ import Foundation
 import Combine
 
 open class LoadableProxy: LoadableProxyProtocol, ObservableObject {
+    
+    public var shouldShowError: Bool  {
+        get { _shouldShowError || loadable.shouldShowError }
+        set { _shouldShowError = newValue }
+    }
+    
+    private var _shouldShowError: Bool = false {
+        didSet { notifyDataDidChanged() }
+    }
 
-    public init() {}
+    public var error: Error? { loadable.error }
+    
+
+    public init(loadable: LoadableProtocol) {
+        self.loadable = loadable
+        
+    }
 
     public var className: String { "\(type(of: self))" }
 
     open var needsSync: Bool { loadable.needsSync }
 
     private var cancellable: AnyCancellable?
-    public weak var loadable: LoadableProtocol! {
+    public var loadable: LoadableProtocol {
         didSet {
             cancellable?.cancel()
              cancellable = loadable.objectWillChange
                 .sink { [weak self] in  self?.notifyDataDidChanged() }
+            proxyDidChange()
         }
     }
 

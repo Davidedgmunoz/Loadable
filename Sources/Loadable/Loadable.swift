@@ -8,7 +8,6 @@ import Foundation
 import Combine
 
 open class Loadable: LoadableProtocol, ObservableObject {
-
     public init() {}
 
     public var state: LoadableState = .idle {
@@ -19,6 +18,17 @@ open class Loadable: LoadableProtocol, ObservableObject {
         }
     }
 
+    
+    public var shouldShowError: Bool = false {
+        didSet {
+            DispatchQueue.global().asyncAfter(deadline: .now()+0.2) {
+                self.objectWillChange.send()
+            }
+        }
+    }
+    
+    public var error: Error?
+ 
     public var className: String { "\(type(of: self))" }
 
     open var needsSync: Bool { state != .didSuccess }

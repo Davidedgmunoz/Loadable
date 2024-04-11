@@ -7,5 +7,5 @@
 import Foundation
 
 public protocol LoadableProxyProtocol: LoadableProtocol {
-    var loadable: LoadableProtocol! { get }
+    var loadable: LoadableProtocol { get }
 }

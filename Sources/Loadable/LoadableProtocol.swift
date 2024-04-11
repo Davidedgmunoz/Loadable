@@ -24,6 +24,8 @@ public protocol LoadableProtocol: AnyObservableObject {
     // needsSync { items.isEmpty }
     /// Var to control if needs to sync, logic starts with `state != .didSuccess`
     var needsSync: Bool { get }
+    var shouldShowError: Bool { get set }
+    var error: Error? { get }
 
     func syncIfNeeded()
     /// Try to sync no matter what.
