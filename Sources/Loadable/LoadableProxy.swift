@@ -11,14 +11,24 @@ open class LoadableProxy: LoadableProxyProtocol, ObservableObject {
     
     public var shouldShowError: Bool  {
         get { _shouldShowError || loadable.shouldShowError }
-        set { _shouldShowError = newValue }
+        set {
+            loadable.shouldShowError = newValue
+            _shouldShowError = newValue
+        }
     }
     
     private var _shouldShowError: Bool = false {
         didSet { notifyDataDidChanged() }
     }
 
-    public var error: Error? { loadable.error }
+    private var _error: Error? {
+        didSet { notifyDataDidChanged() }
+    }
+    
+    public var error: Error? {
+        get { loadable.error ?? _error ?? nil }
+        set { _error = newValue }
+}
     
 
     public init(loadable: LoadableProtocol) {

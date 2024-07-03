@@ -21,9 +21,8 @@ open class Loadable: LoadableProtocol, ObservableObject {
     
     public var shouldShowError: Bool = false {
         didSet {
-            DispatchQueue.global().asyncAfter(deadline: .now()+0.2) {
-                self.objectWillChange.send()
-            }
+            if !shouldShowError { error = nil }
+            self.objectWillChange.send()
         }
     }
     
