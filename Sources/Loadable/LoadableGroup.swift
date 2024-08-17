@@ -50,7 +50,7 @@ public final class LoadableGroup: LoadableGroupProtocol, ObservableObject {
     public var className: String {
         var loadablesName = ""
         loadables.forEach { loadablesName += "\($0.className)," }
-        var loadableGroupName = "LoadableGroup: [\(loadablesName)]"
+        let loadableGroupName = "LoadableGroup: [\(loadablesName)]"
         return loadableGroupName
     }
 

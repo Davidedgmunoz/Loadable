@@ -105,9 +105,9 @@ public final class DefaultAutoSyncer: AutoSyncer {
             return
         }
 
-//        if lastUpdateDate.minutesOfDifference(to: nowDate) > repeatTime/60 {
-//            sync()
-//        }
+        if lastUpdateDate.minutesOfDifference(to: nowDate) > repeatTime/60 {
+            sync()
+        }
     }
 
     @objc private func startSyncing() {
@@ -139,5 +139,17 @@ public final class DefaultAutoSyncer: AutoSyncer {
     private func stopSyncingTimer() {
         autoSyncingTimer?.invalidate()
         autoSyncingTimer = nil
+    }
+}
+
+extension Date {
+    func minutesOfDifference(to date: Date) -> Int {
+        let calendar = Calendar.current
+        let timeComponents = calendar.dateComponents([.hour, .minute], from: date)
+        let nowComponents = calendar.dateComponents([.hour, .minute], from: Date())
+
+        let difference = calendar.dateComponents([.minute], from: timeComponents, to: nowComponents).minute ?? 0
+        
+        return difference
     }
 }
